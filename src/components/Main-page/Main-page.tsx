@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import styles from './Main-page.scss'
 import CardField  from '../cards/Card-field';
 import Header from '../header';
 
@@ -22,7 +21,7 @@ const MainPage: React.FC = () => {
     return(
       <Fragment>
       <Header isChecked={isChecked} onToggle={setIsChecked}/> 
-        <div className={styles['card-field']}>
+        <div className="card-field">
           <CardField cards={cards} isChecked={isChecked} onToggle={setIsChecked}/>
         </div>
         </Fragment>

@@ -175,7 +175,7 @@ header {
     transition: transform .5s;
 }
 
-.active {
+.active-open {
     position: fixed;
     width: 25%;
     height: 100vh;
@@ -197,7 +197,7 @@ header {
   background: linear-gradient(40deg,#ffd86f,#fc6262) !important;
 }
 
-.active a:hover {
+.header-item:hover {
   text-decoration: underline;
 }
 

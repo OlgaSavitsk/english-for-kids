@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './header.scss'
+import styles from '@/components/header.scss'
 import classNames from 'classnames';
 
 interface HeaderProps{
@@ -20,23 +20,23 @@ const checkedGame = () => {
 }
 
     return( 
-        <header className={styles['header']}>          
-                <div className={classNames(menuActive ? [styles['burger-button'], styles['open']] : styles['burger-button'])} onClick={() => setMenuActive(!menuActive)}>
+        <header className="header">          
+                <div className={menuActive ? /* "burger-button" */ "open" : "burger-button"} onClick={() => setMenuActive(!menuActive)}>
                 <span></span>
                 <span></span>
                 <span></span>
                 </div>
-                <div className={classNames(menuActive ? [styles['active'], styles['green']] : styles['menu'], [props.isChecked ? styles['orange'] : ''])} onClick={() => setMenuActive(false)}>
-          <ul className={styles['menu-container']}>
+                <div className={classNames((menuActive ? "menu active-open" : ''), (menuActive ? "green" : "menu"), (props.isChecked ? "orange" : ''))} onClick={() => setMenuActive(false)}>
+          <ul className="menu-container">
               {items.map((item: { id: React.Key; href: string; value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }) => 
                   <li key={item.id}>
-                      <NavLink className={classNames(!menuActive ? styles['header-item'] : styles['header-item'])} onClick={() => setMenuActive(!menuActive)} to={item.href} /* onClick={() => localStorage.setItem('card-category', `${item.value}`)} */>{item.value}</NavLink>
+                     <NavLink className={!menuActive ? "header-item" : "header-item"} onClick={() => setMenuActive(!menuActive)} to={item.href} /* onClick={() => localStorage.setItem('card-category', `${item.value}`)} */>{item.value}</NavLink>
                   </li>
                   )}
           </ul>
       </div>
             <label className={styles['switch']}>
-                <input type="checkbox" className={styles['input']} checked={props.isChecked} onChange={checkedGame}/>          
+                <input type="checkbox" className="input" checked={props.isChecked} onChange={checkedGame}/>          
                 <span className={styles['slider']} data-on="TRAIN" data-off="PLAY"></span>
                 <span className={styles['switch-inner']}></span>               
             </label>

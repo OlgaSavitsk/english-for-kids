@@ -99,7 +99,7 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: ['.wasm', '.js', '.json', '.mjs', '.cjs', '.jsx', '.d.ts', '.ts', '.tsx'],
+    extensions: ['.wasm', '.js', '.json', '.mjs', '.cjs', '.jsx', '.d.ts', '.ts', '.tsx', '.scss', 'css'],
     alias: {
       '@': resolve(__dirname, 'src'),
     },  

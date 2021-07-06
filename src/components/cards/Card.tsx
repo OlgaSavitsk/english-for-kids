@@ -19,8 +19,8 @@ export const Card: React.FC<CardProps> = props => {
     const history = useHistory()
 
   return (
-     <NavLink className={classNames(!props.isChecked ? [styles['main-card'], styles['green']] : styles['main-card'])} to="/cards">
-         <div className={styles['image-card']} style={{backgroundImage: `url('./images/${props.card.image}')`}}></div>
+     <NavLink className={classNames(!props.isChecked ? "main-card green" : "main-card")} to="/cards">
+         <div className="image-card" style={{backgroundImage: `url('./images/${props.card.image}')`}}></div>
          {props.card.value}
      </NavLink>
   );
