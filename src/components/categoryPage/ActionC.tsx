@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import styles from './CategoryPage.scss'
 import data from './cards.json'
 import CardCategory from './CardCategory';
@@ -11,10 +11,10 @@ const ActionC: React.FC = () => {
         <div className={styles['container']}>
             <div className={styles['rating']}></div>
             {data[2].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
-      <CardCategory /* flipped={isFlipped} setFlipped={setIsFlipped} */ item={item} onFlip={flipHandler}/>
+      <CardCategory item={item} onFlip={flipHandler}/>
    )}
         </div>
     )
 }
 
-export default ActionC;
+export default ActionC; */

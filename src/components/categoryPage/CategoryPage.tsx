@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import styles from './CategoryPage.scss'
+import styles from '@/components/categoryPage/CategoryPage.scss'
 import CardContainer from './CardContainer';
 import Header from '../header';
 

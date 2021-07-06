@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import styles from '@/components/Main-page/Main-page.scss'
+import styles from './Main-page.scss'
 import CardField  from '../cards/Card-field';
 import Header from '../header';
 

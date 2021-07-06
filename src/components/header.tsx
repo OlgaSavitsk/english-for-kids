@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '@/components/header.scss'
+import styles from './header.scss'
 import classNames from 'classnames';
 
 interface HeaderProps{
@@ -21,7 +21,7 @@ const checkedGame = () => {
 
     return( 
         <header className={styles['header']}>          
-                <div className={classNames(menuActive ? styles['burger-button', 'open'] : styles['burger-button'])} onClick={() => setMenuActive(!menuActive)}>
+                <div className={classNames(menuActive ? [styles['burger-button'], styles['open']] : styles['burger-button'])} onClick={() => setMenuActive(!menuActive)}>
                 <span></span>
                 <span></span>
                 <span></span>

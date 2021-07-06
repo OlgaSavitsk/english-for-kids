@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState } from "react";
 import data from './cards.json';
 import CardCategory from "./CardCategory";
+//import styles from './CategoryPage.scss'
 import styles from './CategoryPage.scss'
 import classNames from "classnames";
 import { useEffect } from "react";
@@ -81,7 +82,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     }; 
 
      useEffect(() => {  
-      const sounds = data[0].sort(() => Math.random() - 0.5) 
+       const sounds = data[0].sort(() => Math.random() - 0.5) 
      audioRef.current = new Audio(randomSound.audioSrc);
       if (isReady.current) {
         audioRef.current.play();

@@ -28,11 +28,11 @@ const formStylesRule = (useModules = false) => ({
         url: false,
         importLoaders: 1,
         sourceMap: true,
-        ...(useModules && {
+       /*  ...(useModules && {
           modules: {
             localIdentName: '[local]-[hash:base64:5]',
           },
-        }),
+        }), */
       },
     },
     'sass-loader',
@@ -100,9 +100,9 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['.wasm', '.js', '.json', '.mjs', '.cjs', '.jsx', '.d.ts', '.ts', '.tsx'],
-    alias: {
+    /*  alias: {
       '@': resolve(__dirname, 'src'),
-    },
+    }, */ 
   },
   devServer: {
    // contentBase: './src/static',

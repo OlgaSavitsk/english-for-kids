@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from '@/components/categoryPage/CategoryPage.scss'
+import styles from './CategoryPage.scss'
 import classNames from "classnames";
 import { useEffect } from "react";
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+/* import React, { useRef, useState } from 'react';
 import styles from './CategoryPage.scss'
 import data from '../../../public/cards.json';
 import CardCategory from './CardCategory';
@@ -65,4 +65,4 @@ const AnimalB: React.FC<CardContainerProps> = props => {
     )
 }
 
-export default AnimalB;
+export default AnimalB; */

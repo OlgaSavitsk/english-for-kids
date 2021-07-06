@@ -17,5 +17,6 @@
     "target": "ES6",
     "jsx": "react",
     "jsxFactory": "React.createElement",
-  }
+  },
+  "include": ["src", "declaration.d.ts"]
 }
