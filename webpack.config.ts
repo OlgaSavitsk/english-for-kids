@@ -99,10 +99,10 @@ const config: Configuration = {
     ],
   },
   resolve: {
-    extensions: ['.wasm', '.js', '.json', '.mjs', '.cjs', '.jsx', '.d.ts', '.ts', '.tsx', '.scss', 'css'],
-    alias: {
+    extensions: ['.wasm', '.js', '.json', '.mjs', '.cjs', '.jsx', '.d.ts', '.ts', '.tsx'],
+    /* alias: {
       '@': resolve(__dirname, 'src'),
-    },  
+    },  */ 
   },
   devServer: {
    // contentBase: './src/static',

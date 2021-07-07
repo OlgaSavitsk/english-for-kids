@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from "react";
 import data from './cards.json';
 import CardCategory from "./CardCategory";
 //import styles from './CategoryPage.scss'
-import styles from './CategoryPage.scss'
+import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
 
@@ -146,25 +146,24 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
 
   return (
     <Fragment>
-       <div className={styles['container']}>
-            <div className={styles['rating']}>
+       <div className="container">
+            <div className="rating">
         {stars.map(star => {
           return (
-            <div className={styles[`${star.className}`]}></div>
+            <div className={`${star.className}`}></div>
           )
         })}
         </div>
    {data[0].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
       <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} isPlay={isPlay} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
-   <div className={styles['button']} onClick={() => setIsChange(true)}>
-     <div className={classNames(props.isChecked ? styles['button-text'] : styles['hidden'], [!isChange ? styles['button-text'] : styles['button-repeat']])} onClick={() => {setIsPlay(true); toRepeat()}}>Start game</div>
+   <div className="button" onClick={() => setIsChange(true)}>
+     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toRepeat()}}>Start game</div>
    </div>
-   <audio className={styles['audio']} src=""></audio>
-   <audio className={styles['audio-effect']} src=""></audio>
+   
    </div>
-   <div className={styles['smile-container']}>
-    <div className={styles['rating']}>{count}</div>
+   <div className="smile-container">
+    <div className="rating">{count}</div>
         {smiles.map(smile => {
           return (
             <div style={{backgroundImage: `url('${smile.image}')`}}></div>

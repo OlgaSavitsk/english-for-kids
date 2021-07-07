@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { NavLink } from 'react-router-dom';
-import styles from '@/components/cards/Card.scss'
+import './Card.scss';
 import classNames from "classnames";
 
 interface CardProps {

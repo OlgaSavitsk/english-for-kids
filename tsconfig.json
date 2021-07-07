@@ -11,12 +11,12 @@
         "./*"
       ]
     },
-    "outDir": "./build/",
+    "outDir": "./dist/",
     "rootDir": "./",
     "module": "CommonJS",
     "target": "ES6",
     "jsx": "react",
     "jsxFactory": "React.createElement",
   },
-  "include": ["src", "declaration.d.ts"]
+  "include": ["declaration.d.ts"]
 }

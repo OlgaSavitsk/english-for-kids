@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from './CategoryPage.scss'
+import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
 
@@ -62,16 +62,16 @@ if(props.isClick === props.item.id && props.isActive) {
   } 
 
     return (    
-   <div className={styles['card-container']} onMouseLeave={() => setIsFlipped(false)}>
-    <div className={classNames(isFlipped ? styles['flipped'] : styles['card']/* , props.isChecked ? [styles['card'], styles['card-cover']]: styles['card'] */)}>
-         <div className={classNames(props.isChecked ? [styles['card__front'], styles['cover']]: styles['card__front'], (props.isClick === props.item.id && props.isActive) ? styles['inactive'] : '', isUnActive ? styles['inactive'] : '')} style={{backgroundImage: `url('${props.item.image}')`}}
+   <div className="card-container" onMouseLeave={() => setIsFlipped(false)}>
+    <div className={classNames(isFlipped ? "flipped" : "card"/* , props.isChecked ? [styles['card'], styles['card-cover']]: styles['card'] */)}>
+         <div className={classNames(props.isChecked ? "card__front cover" : "card__front", (props.isClick === props.item.id && props.isActive) ? "inactive" : '', isUnActive ? "inactive" : '')} style={{backgroundImage: `url('${props.item.image}')`}}
           onClick={() =>{playAudio(props.item.audioSrc);  props.onSetClick(props.item.id);  /* props.onClick(props.item.audioSrc); */  unActive()}}>
-            <div className={classNames(props.isChecked ? [styles['card-title'], styles['hidden']]: styles['card-title'])}>{props.item.word}</div>
+            <div className={classNames(props.isChecked ? "card-title hidden" : "card-title")}>{props.item.word}</div>
           </div>
-          <div className={styles['card__back']} style={{backgroundImage: `url('${props.item.image}')`}}>
-            <div className={classNames(props.isChecked ? [styles['card-title'], styles['hidden']]: styles['card-title'])}>{props.item.translation}</div>
+          <div className="card__back" style={{backgroundImage: `url('${props.item.image}')`}}>
+            <div className={classNames(props.isChecked ? "card-title hidden": "card-title")}>{props.item.translation}</div>
           </div>
-          <div className={classNames(props.isChecked ? [styles['rotate'], styles['none']]: styles['rotate'])} onClick={() => setIsFlipped(true)}></div>
+          <div className={classNames(props.isChecked ? "rotate none": "rotate")} onClick={() => setIsFlipped(true)}></div>
     </div>
   </div>
   
