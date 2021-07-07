@@ -44,7 +44,7 @@ const config: Configuration = {
   devtool: isProduction ? false : 'source-map',
   entry: './src/index.tsx',
   output: {
-    path: resolve(__dirname, 'build'),
+    path: resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
