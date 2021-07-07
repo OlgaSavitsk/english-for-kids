@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from '@/components/header.scss'
+import './header.scss'
 import classNames from 'classnames';
 
 interface HeaderProps{
@@ -35,10 +35,10 @@ const checkedGame = () => {
                   )}
           </ul>
       </div>
-            <label className={styles['switch']}>
+            <label className="switch">
                 <input type="checkbox" className="input" checked={props.isChecked} onChange={checkedGame}/>          
-                <span className={styles['slider']} data-on="TRAIN" data-off="PLAY"></span>
-                <span className={styles['switch-inner']}></span>               
+                <span className="slider" data-on="TRAIN" data-off="PLAY"></span>
+                <span className="switch-inner"></span>               
             </label>
         </header>
        
