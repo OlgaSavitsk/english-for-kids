@@ -21,6 +21,7 @@ import { useHistory } from "react-router-dom";
   }
 
 const Emotions: React.FC = () => {
+  const [menuActive, setMenuActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isChange, setIsChange] = useState(false);
   const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'};
@@ -44,7 +45,8 @@ const Emotions: React.FC = () => {
    const state = localStorage.getItem('state');
    if(state === 'false') {
      setIsChecked(true);
-     local()
+     local();
+     unSort();
    } else {
      setIsChecked(false);
      localStorage.clear()
@@ -157,8 +159,8 @@ const addSmile = (image: string) => {
 
 return (
   <Fragment>
-  <Header isChecked={isChecked} onToggle={setIsChecked}/> 
-    {visibleBlock && <div className="card-field ">
+  <Header isChecked={isChecked} onToggle={setIsChecked} onOpenClose={setMenuActive} menuActive={menuActive}/> 
+    {visibleBlock && <div className="card-field" onClick={() => setMenuActive(false)}>
          <div className="rating">
      {stars.map((star, index) => {
        return (
@@ -169,7 +171,7 @@ return (
 {data[5].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
-<div className="button" onClick={() => {setIsChange(true); unSort()}}>
+<div className="button" onClick={() => {setIsChange(true)}}>
   <div className={classNames(isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack(); toRepeat()}}>Start game</div>
 </div>
 

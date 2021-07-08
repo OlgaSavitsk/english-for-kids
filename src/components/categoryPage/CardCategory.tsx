@@ -54,7 +54,7 @@ if(props.isClick === props.item.id && props.isActive) {
 
     return (    
    <div className="card-container" onMouseLeave={() => setIsFlipped(false)}>
-    <div className={classNames(isFlipped ? "flipped" : "card"/* , props.isChecked ? [styles['card'], styles['card-cover']]: styles['card'] */)}>
+    <div className={classNames(isFlipped ? "flipped" : "card")}>
          <div className={classNames(props.isChecked ? "card__front cover" : "card__front", (props.isClick === props.item.id && props.isActive) ? "inactive" : '', isUnActive ? "inactive" : '')} style={{backgroundImage: `url('${props.item.image}')`}}
           onClick={() =>{playAudio(props.item.audioSrc);  props.onSetClick(props.item.id);  /* props.onClick(props.item.audioSrc); */  unActive()}}>
             <div className={classNames(props.isChecked ? "card-title hidden" : "card-title")}>{props.item.word}</div>

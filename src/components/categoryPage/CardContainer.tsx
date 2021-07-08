@@ -10,10 +10,7 @@ import MainPage from "../Main-page/Main-page";
 interface CardContainerProps {
   isChecked: boolean;
   onToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  //onAdd: (className: string) => void;
- /*  onUnSort: (e: {
-    preventDefault: () => void;
-  }) => void */
+  onOpenClose: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface stars {
@@ -51,6 +48,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
       if(state === 'false') {
         props.onToggle(true);
         local()
+        unSort()
       } else {
         props.onToggle(false);
         localStorage.clear()
@@ -160,13 +158,9 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     setSmiles(prev => [newSmile, ...smiles])
   }
 
-  useState(() => {
-   
-  })
-
   return (
     <Fragment>
-       {visibleBlock && <div className="card-field ">
+       {visibleBlock && <div className="card-field" onClick={() => {props.onOpenClose(false) }}>
             <div className="rating">
         {stars.map((star, index) => {
           return (
@@ -177,7 +171,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
    {data[0].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
       <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
-   <div className="button" onClick={() => {setIsChange(true); unSort()}}>
+   <div className="button" onClick={() => {setIsChange(true)/* ; unSort()} */}}>
      <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack();  toRepeat()}}>Start game</div>
    </div>
    

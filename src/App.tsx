@@ -18,7 +18,7 @@ const App = (): JSX.Element => {
 
   return (
   <BrowserRouter>
-   {/*  <Header isChecked={isChecked} onToggle={setIsChecked}/> */}
+  {/*  <Header isChecked={isChecked} onToggle={setIsChecked}/>  */}
     <div className="container">
       <Switch>
         <Route component={MainPage} path="/" exact />
