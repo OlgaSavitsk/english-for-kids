@@ -171,13 +171,9 @@ return (
 
 </div>}
 {!visibleBlock && <div className="smile-container">
- <div className="rating">{count}</div>
-     {smiles.map((smile, index) => {
-       return (
-         <div key={index} style={{backgroundImage: `url('${smile.image}')`}}></div>
-       )
-     })}
-     </div>}
+    <div className="smile-count">{count} errors</div>
+            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>
+        </div>}
 </Fragment>
 );
 }

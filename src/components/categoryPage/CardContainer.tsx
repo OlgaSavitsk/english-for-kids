@@ -4,6 +4,8 @@ import CardCategory from "./CardCategory";
 import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainPage from "../Main-page/Main-page";
 
 interface CardContainerProps {
   isChecked: boolean;
@@ -42,7 +44,6 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     const [visibleBlock, setVisibleBlock] = useState(true);
     const [count, setCount] = useState(0);
     const [audioArr, setAudioArr] = useState<Array<string>>([])
-    //const audioArr: Array<number> = [];
 
      React.useEffect(() => {
       const state = localStorage.getItem('state');
@@ -57,13 +58,10 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     }, [props.isChecked]);
 
     const unSort = () => {
-      // e.preventDefault();
-       //local()
        data[0].sort(() => Math.random() - 0.5).reverse;
    }
    
    const local =() => {
-      // e.preventDefault();
           const soundsList = data[0].sort(() => Math.random() - 0.5); 
           localStorage.setItem('sound0', soundsList[0].audioSrc)
           localStorage.setItem('sound1', soundsList[1].audioSrc)
@@ -107,12 +105,6 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
         isPlay
         setVisibleBlock((visible) => !visible);
       }
-     /*  if(!count) {
-        addSmile(smile.imageSuccess)
-      }
-      if(count) {
-        addSmile(smile.imageFail)
-      } */
     }, [randomSoundIndex]); 
 
       const checkSound = (src: string, id: number) => {       
@@ -186,7 +178,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
    </div>}
    {!visibleBlock && <div className="smile-container">
     <div className="smile-count">{count} errors</div>
-            <div className={classNames(count ? "smile__fail" : "smile__success"/* `${smile.imageFail}` */)}></div>
+            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>
         </div>}
    </Fragment>
   );
