@@ -5,16 +5,18 @@ import Header from './components/header';
 import './index.scss';
 import CategoryPage from './components/categoryPage/CategoryPage';
 import ActionB from './components/categoryPage/ActionB';
-/* import ActionC from './components/categoryPage/ActionC';
+import ActionC from './components/categoryPage/ActionC';
 import Adjective from './components/categoryPage/Adjective';
 import AnimalA from './components/categoryPage/AnimalA';
-import AnimalB from './components/categoryPage/AnimalB';  */
+import AnimalB from './components/categoryPage/AnimalB'; 
+import Clothers from './components/categoryPage/Clothes';
+import Emotions from './components/categoryPage/Emotion';
 
 const App = (): JSX.Element => {
  /*  const [isChecked, setIsChecked] = useState(false); */
- /* window.onload = () => {
+  window.onload = () => {
    localStorage.clear()
- } */
+ } 
 
   return (
   <BrowserRouter>
@@ -24,10 +26,12 @@ const App = (): JSX.Element => {
         <Route component={MainPage} path="/" exact />
         <Route component={CategoryPage} path="/cards"/>
        <Route component={ActionB} path="/actionB"/>
-        {/* <Route component={ActionC} path="/actionC"/>
+        <Route component={ActionC} path="/actionC"/>
         <Route component={Adjective} path="/adjective"/>
         <Route component={AnimalA} path="/animalA"/>
-        <Route component={AnimalB} path="/animalB"/>  */}
+        <Route component={AnimalB} path="/animalB"/> 
+        <Route component={Clothers} path="/clothes"/> 
+        <Route component={Emotions} path='/emotion'/> 
       </Switch>
     </div>
   </BrowserRouter>

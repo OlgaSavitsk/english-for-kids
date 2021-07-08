@@ -19,7 +19,7 @@ import Header from "../header";
     image: string; 
   }
 
-const ActionB: React.FC = () => {
+const Emotions: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isChange, setIsChange] = useState(false);
   const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'}
@@ -137,7 +137,7 @@ return (
        )
      })}
      </div>
-{data[1].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
+{data[5].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
 <div className="button" onClick={() => {setIsChange(true)}}>
@@ -157,4 +157,4 @@ return (
 );
 }
 
-export default ActionB; 
+export default Emotions; 

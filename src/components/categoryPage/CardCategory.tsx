@@ -40,8 +40,6 @@ export const CardCategory: React.FC <CardCategoryProps> = props => {
     }  
   }
 
- 
-
 useEffect(() => {
 if(props.isClick === props.item.id && props.isActive) {
   setIsUnActive(true)
