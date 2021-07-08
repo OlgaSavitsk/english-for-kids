@@ -5,6 +5,7 @@ import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
 import Header from "../header";
+import { useHistory } from "react-router-dom";
 
 /* interface CardContainerProps {
     isChecked: boolean;
@@ -35,7 +36,8 @@ const ActionC: React.FC = () => {
  const [isClick, setIsClick] = useState(0); 
  const [visibleBlock, setVisibleBlock] = useState(true);
  const [count, setCount] = useState(0);
- const [audioArr, setAudioArr] = useState<Array<string>>([])
+ const [audioArr, setAudioArr] = useState<Array<string>>([]);
+ let history = useHistory();
 
   React.useEffect(() => {
    const state = localStorage.getItem('state');
@@ -96,6 +98,9 @@ const ActionC: React.FC = () => {
     audioRef.current.pause();
     isPlay
     setVisibleBlock((visible) => !visible);
+    setTimeout(() => {
+      history.push('/')
+    }, 4000)
   }
  }, [randomSoundIndex]); 
 

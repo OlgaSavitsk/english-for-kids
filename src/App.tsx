@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/Main-page/Main-page';
 import Header from './components/header';
 import './index.scss';
@@ -30,6 +30,14 @@ const App = (): JSX.Element => {
         <Route component={AnimalB} path="/animalB"/> 
         <Route component={Clothers} path="/clothes"/> 
         <Route component={Emotions} path='/emotion'/> 
+        {/* <Redirect from="/cards" to="/" />
+        <Redirect from="/actionB" to="/" />
+        <Redirect from="/actionC" to="/" />
+        <Redirect from="/adjective" to="/" />
+        <Redirect from="/animalA" to="/" />
+        <Redirect from="/animalB" to="/" />
+        <Redirect from="/clothes" to="/" />
+        <Redirect from="/emotion" to="/" /> */}
       </Switch>
     </div>
   </BrowserRouter>

@@ -5,6 +5,7 @@ import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
 import Header from "../header";
+import { useHistory } from "react-router-dom";
 
 /* interface CardContainerProps {
     isChecked: boolean;
@@ -37,6 +38,7 @@ const Emotions: React.FC = () => {
  const [visibleBlock, setVisibleBlock] = useState(true);
  const [count, setCount] = useState(0);
  const [audioArr, setAudioArr] = useState<Array<string>>([]);
+ let history = useHistory();
 
   React.useEffect(() => {
    const state = localStorage.getItem('state');
@@ -97,7 +99,9 @@ const local = () => {
     audioRef.current.pause();
     isPlay
     setVisibleBlock((visible) => !visible);
-    //addSmile();
+    setTimeout(() => {
+      history.push('/')
+    }, 4000)
   }
  }, [randomSoundIndex]); 
 

@@ -4,7 +4,7 @@ import CardCategory from "./CardCategory";
 import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, NavLink, Redirect, useHistory } from 'react-router-dom';
 import MainPage from "../Main-page/Main-page";
 
 interface CardContainerProps {
@@ -43,7 +43,8 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     const [isClick, setIsClick] = useState(0); 
     const [visibleBlock, setVisibleBlock] = useState(true);
     const [count, setCount] = useState(0);
-    const [audioArr, setAudioArr] = useState<Array<string>>([])
+    const [audioArr, setAudioArr] = useState<Array<string>>([]);
+    let history = useHistory();
 
      React.useEffect(() => {
       const state = localStorage.getItem('state');
@@ -104,6 +105,9 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
         audioRef.current.pause();
         isPlay
         setVisibleBlock((visible) => !visible);
+        setTimeout(() => {
+          history.push('/')
+        }, 4000)
       }
     }, [randomSoundIndex]); 
 
@@ -148,15 +152,17 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
 
   const smile = {imageSuccess: 'smile__success',
   imageFail: 'smile__fail'};
-
   const [smiles, setSmiles] = useState<smiles[]>([])
-
   const addSmile = (image: string) => {
     const newSmile: smiles = {
       image: image,
     }
     setSmiles(prev => [newSmile, ...smiles])
   }
+
+  useState(() => {
+   
+  })
 
   return (
     <Fragment>
@@ -178,7 +184,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
    </div>}
    {!visibleBlock && <div className="smile-container">
     <div className="smile-count">{count} errors</div>
-            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>
+            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>         
         </div>}
    </Fragment>
   );

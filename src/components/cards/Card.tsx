@@ -23,6 +23,7 @@ export const Card: React.FC<CardProps> = props => {
          <div className="image-card" style={{backgroundImage: `url('./images/${props.card.image}')`}}></div>
          {props.card.value}
      </NavLink>
+     
   );
 }
 
