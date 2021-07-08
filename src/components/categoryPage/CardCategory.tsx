@@ -25,6 +25,7 @@ interface CardCategoryProps {
 isClick: number;
 onSetClick: React.Dispatch<React.SetStateAction<number>>;
 onAdd: (className: string) => void;
+
 }
 
 export const CardCategory: React.FC <CardCategoryProps> = props => {

@@ -9,6 +9,9 @@ interface CardContainerProps {
   isChecked: boolean;
   onToggle: React.Dispatch<React.SetStateAction<boolean>>;
   //onAdd: (className: string) => void;
+ /*  onUnSort: (e: {
+    preventDefault: () => void;
+  }) => void */
 }
 
 interface stars {
@@ -41,13 +44,33 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
      React.useEffect(() => {
       const state = localStorage.getItem('state');
       if(state === 'false') {
-        props.onToggle(true)
+        props.onToggle(true);
+        local()
       } else {
         props.onToggle(false);
         localStorage.clear()
       }
       console.log('режим игры')
     }, [props.isChecked]);
+
+    const unSort = () => {
+      // e.preventDefault();
+       //local()
+       data[0].sort(() => Math.random() - 0.5).reverse;
+   }
+   
+   const local = () => {
+       //e.preventDefault();
+          const soundsList = data[0].sort(() => Math.random() - 0.5); 
+          localStorage.setItem('sound0', soundsList[0].audioSrc)
+          localStorage.setItem('sound1', soundsList[1].audioSrc)
+          localStorage.setItem('sound2', soundsList[2].audioSrc)
+          localStorage.setItem('sound3', soundsList[3].audioSrc)
+          localStorage.setItem('sound4', soundsList[4].audioSrc)
+          localStorage.setItem('sound5', soundsList[5].audioSrc)
+          localStorage.setItem('sound6', soundsList[6].audioSrc)
+          localStorage.setItem('sound7', soundsList[7].audioSrc)      
+   }
 
     const toNextTrack = () => {
       if (randomSoundIndex < data[0].length - 1) {
@@ -141,7 +164,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
    {data[0].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
       <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
-   <div className="button" onClick={() => {setIsChange(true)}}>
+   <div className="button" onClick={() => {setIsChange(true); unSort()}}>
      <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack(); toRepeat()}}>Start game</div>
    </div>
    

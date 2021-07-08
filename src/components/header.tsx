@@ -20,33 +20,8 @@ const checkedGame = (e: { preventDefault: () => void; }) => {
    // e.preventDefault();
     props.onToggle(!props.isChecked);
     localStorage.setItem('state', `${props.isChecked}`)
-    local(e)
-    data[0].sort(() => Math.random() - 0.5).reverse;
-}
-
-const local = (e: { preventDefault: () => void; }) => {
-    //e.preventDefault();
-    
-    if(items[3].href === '/actionB'){
-    const soundsList = data[5].sort(() => Math.random() - 0.5);
-    localStorage.setItem('sound0', soundsList[0].audioSrc)
-    localStorage.setItem('sound1', soundsList[1].audioSrc)
-    localStorage.setItem('sound2', soundsList[2].audioSrc)
-    localStorage.setItem('sound3', soundsList[3].audioSrc)
-    localStorage.setItem('sound4', soundsList[4].audioSrc)
-    localStorage.setItem('sound5', soundsList[5].audioSrc)
-    localStorage.setItem('sound6', soundsList[6].audioSrc)
-    localStorage.setItem('sound7', soundsList[7].audioSrc)
-    } 
-    const soundsList = data[0].sort(() => Math.random() - 0.5); 
-    localStorage.setItem('sound0', soundsList[0].audioSrc)
-    localStorage.setItem('sound1', soundsList[1].audioSrc)
-    localStorage.setItem('sound2', soundsList[2].audioSrc)
-    localStorage.setItem('sound3', soundsList[3].audioSrc)
-    localStorage.setItem('sound4', soundsList[4].audioSrc)
-    localStorage.setItem('sound5', soundsList[5].audioSrc)
-    localStorage.setItem('sound6', soundsList[6].audioSrc)
-    localStorage.setItem('sound7', soundsList[7].audioSrc)
+    //local(e)
+    //data[0].sort(() => Math.random() - 0.5).reverse;
 }
 
     return( 

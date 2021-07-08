@@ -39,13 +39,33 @@ const AnimalA: React.FC = () => {
   React.useEffect(() => {
    const state = localStorage.getItem('state');
    if(state === 'false') {
-     setIsChecked(true)
+     setIsChecked(true);
+     local()
    } else {
      setIsChecked(false);
-     localStorage.clear()
+     localStorage.clear();
    }
    console.log('режим игры')
  }, [isChecked]);
+
+ const unSort = () => {
+  // e.preventDefault();
+   //local()
+   data[2].sort(() => Math.random() - 0.5).reverse;
+}
+
+const local = () => {
+   //e.preventDefault();
+      const soundsList = data[2].sort(() => Math.random() - 0.5); 
+      localStorage.setItem('sound0', soundsList[0].audioSrc)
+      localStorage.setItem('sound1', soundsList[1].audioSrc)
+      localStorage.setItem('sound2', soundsList[2].audioSrc)
+      localStorage.setItem('sound3', soundsList[3].audioSrc)
+      localStorage.setItem('sound4', soundsList[4].audioSrc)
+      localStorage.setItem('sound5', soundsList[5].audioSrc)
+      localStorage.setItem('sound6', soundsList[6].audioSrc)
+      localStorage.setItem('sound7', soundsList[7].audioSrc)      
+}
 
  const toNextTrack = () => {
    if (randomSoundIndex < data[0].length - 1) {
@@ -140,7 +160,7 @@ return (
 {data[2].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
-<div className="button" onClick={() => {setIsChange(true)}}>
+<div className="button" onClick={() => {setIsChange(true); unSort()}}>
   <div className={classNames(isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack(); toRepeat()}}>Start game</div>
 </div>
 
