@@ -9,10 +9,8 @@ const CategoryPage: React.FC = () => {
     
     return( 
         <Fragment>
-        <Header isChecked={isChecked} onToggle={setIsChecked}/> 
-       
+        <Header isChecked={isChecked} onToggle={setIsChecked}/>       
             <CardContainer isChecked={isChecked} onToggle={setIsChecked}/>
-
         </Fragment>
     )
 }

@@ -14,7 +14,7 @@ interface CardCategoryProps {
   /* onFlip(id: number): void; */
   isChecked: boolean;
   onToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  isPlay: boolean;
+  //isPlay: boolean;
   onClick: (src: string, id: number) => void;
  isActive: boolean;
  onActive: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -40,15 +40,7 @@ export const CardCategory: React.FC <CardCategoryProps> = props => {
     }  
   }
 
-  React.useEffect(() => {
-    const state = localStorage.getItem('state');
-    if(state === 'false') {
-      props.onToggle(true)
-    } else {
-      props.onToggle(false)
-    }
-    console.log('режим игры')
-  }, [props.isChecked])
+ 
 
 useEffect(() => {
 if(props.isClick === props.item.id && props.isActive) {

@@ -1,7 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
 import data from './cards.json';
 import CardCategory from "./CardCategory";
-//import styles from './CategoryPage.scss'
 import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
@@ -21,69 +20,57 @@ interface smiles {
 }
 
 export const CardContainer: React.FC<CardContainerProps> = props => {
+  /* const sounds = ['./audio/cry.mp3', "./audio/dance.mp3", "./audio/dive.mp3", "./audio/draw.mp3", "./audio/fish.mp3",  "./audio/hug.mp3", "./audio/jump.mp3",  "./audio/fly.mp3"] */
+   
+   
      const [isChange, setIsChange] = useState(false);
      const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'}
-
-        /* const addRandomSound = () => {
-         // const index = Math.floor(Math.random() * 8);
-          //const newSound = [...randomSound, index];
-          const sounds = data[0].sort(() => Math.random() - 0.5)
-          sounds.forEach(element => {
-            setRandomSound(prev => (element.audioSrc, randomSound))
-          });
-        } */
-
-        /* const [randomSound, setRandomSound] = useState(
-      data[0][randomNumber]
-      //data[0].sort(() => Math.random() - 0.5)
-      ); */
-      
-      const [minId, setMinId] = useState(0);
-      const [maxId, setMaxId] = useState(7)
+  
     const [randomSoundIndex, setRandomSoundIndex] = useState(0);
     const [isPlay, setIsPlay] = useState(false);
-  const [randomSound, setRandomSound] = useState(data[0][Math.floor(Math.random() * 8)]);
-  /* const sounds = data[0].sort(() => Math.random() - 0.5).forEach(sound => {
-    
-  }); */
-  //const sounds = data[0].sort(() => Math.random() - 0.5)
-   // const { audioSrc } = data[0][randomSoundIndex];
-   
 
+    const audioSrc = localStorage.getItem(`sound${randomSoundIndex}`);
     const isReady = useRef(false);
-    const audioRef = useRef(new Audio(randomSound.audioSrc));
+    const audioRef = useRef(new Audio(audioSrc!));
 
     const [isActive, setIsActive] = useState(false);
     const [isClick, setIsClick] = useState(0); 
-   
-
+    const [visibleBlock, setVisibleBlock] = useState(true);
     const [count, setCount] = useState(0);
-      
 
-    const toNextTrack = () => {     
-   setRandomSound(data[0][Math.floor(Math.random() * 8)]);
+     React.useEffect(() => {
+      const state = localStorage.getItem('state');
+      if(state === 'false') {
+        props.onToggle(true)
+      } else {
+        props.onToggle(false);
+        localStorage.clear()
+      }
+      console.log('режим игры')
+    }, [props.isChecked]);
 
-   //setRandomSoundIndex(Math.floor(Math.random() * data[0].length - 1))
-    //console.log(setRandomSound(data[0][Math.floor(Math.random() * data[0].length)]))
+    const toNextTrack = () => {
       if (randomSoundIndex < data[0].length - 1) {
-        setRandomSoundIndex(randomSoundIndex + 1);
-     }     
-     else {
-        setRandomSoundIndex(0);
-      }    
-    };
-
-    const toRepeat = () => {
-      if (randomSoundIndex < 8) {
         setRandomSoundIndex(randomSoundIndex + 1);
       } else {
         setRandomSoundIndex(0);
       }
+      if(randomSoundIndex === 7) {
+        setVisibleBlock((visible) => !visible);
+      }
+      console.log(randomSoundIndex)
+    };
+
+    const toRepeat = () => {
+      audioRef.current.ended
+      if(audioRef.current.ended){
+        audioRef.current.play()
+        setRandomSoundIndex(randomSoundIndex);
+    }
     }; 
 
-     useEffect(() => {  
-       const sounds = data[0].sort(() => Math.random() - 0.5) 
-     audioRef.current = new Audio(randomSound.audioSrc);
+      useEffect(() => {      
+     audioRef.current = new Audio(audioSrc!);
       if (isReady.current) {
         audioRef.current.play();
         setIsPlay(true);       
@@ -93,8 +80,8 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     }, [randomSoundIndex]); 
 
       const checkSound = (src: string, id: number) => {
-          if(!props.isChecked) return            
-          if(props.isChecked && isPlay && src === randomSound.audioSrc){
+          if(!props.isChecked) return        
+          if(props.isChecked && isPlay && src === audioSrc){
           const audio = new Audio(); 
           audio.src = soundEffect.srcCorrect;
           audio.play();
@@ -102,14 +89,11 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
           setIsClick(id)
          const className = star.starSucces;
          addStar(className)
-          console.log(src)
-          /* console.log(audioSrc) */
           setTimeout(() => {
            toNextTrack()
-           
           }, 1500)         
         }
-        if(props.isChecked && isPlay && src !== randomSound.audioSrc) {
+        if(props.isChecked && isPlay && src !== audioSrc) {
           const audio = new Audio();
         audio.src = soundEffect.srcError;
         audio.play();
@@ -146,30 +130,30 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
 
   return (
     <Fragment>
-       <div className="container">
+       {visibleBlock && <div className="card-field ">
             <div className="rating">
-        {stars.map(star => {
+        {stars.map((star, index) => {
           return (
-            <div className={`${star.className}`}></div>
+            <div key={index} className={`${star.className}`}></div>
           )
         })}
         </div>
    {data[0].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
-      <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} isPlay={isPlay} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
+      <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
-   <div className="button" onClick={() => setIsChange(true)}>
-     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toRepeat()}}>Start game</div>
+   <div className="button" onClick={() => {setIsChange(true)}}>
+     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack(); toRepeat()}}>Start game</div>
    </div>
    
-   </div>
-   <div className="smile-container">
+   </div>}
+   {!visibleBlock && <div className="smile-container">
     <div className="rating">{count}</div>
-        {smiles.map(smile => {
+        {smiles.map((smile, index) => {
           return (
-            <div style={{backgroundImage: `url('${smile.image}')`}}></div>
+            <div key={index} style={{backgroundImage: `url('${smile.image}')`}}></div>
           )
         })}
-        </div>
+        </div>}
    </Fragment>
   );
 }

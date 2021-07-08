@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './header.scss'
 import classNames from 'classnames';
+import data from './categoryPage/cards.json';
 
 interface HeaderProps{
     isChecked: boolean;
@@ -10,13 +11,42 @@ interface HeaderProps{
 
 const Header: React.FC<HeaderProps> = props =>{
   const [menuActive, setMenuActive] = useState(false);
+  
     const items = [{value: "Main Page", href: '/', id: 1}, {value: "Action (set A)", href: '/cards', id: 2}, {value: "Action (set B)", href: '/actionB', id: 3},
     {value: "Action (set C)", href: '/actionC', id: 4}, {value: "Adjective", href: '/adjective', id: 5}, {value: "Animal (set A)", href: '/animalA', id: 6}, {value: "Animal (set B)", href: '/animalB', id: 7}, 
     {value: "Clothes", href: '/clothes', id: 8}, {value: "Emotion", href: '/emotion', id: 9}]
 
-const checkedGame = () => {
+const checkedGame = (e: { preventDefault: () => void; }) => {
+   // e.preventDefault();
     props.onToggle(!props.isChecked);
     localStorage.setItem('state', `${props.isChecked}`)
+    local(e)
+    data[0].sort(() => Math.random() - 0.5).reverse;
+}
+
+const local = (e: { preventDefault: () => void; }) => {
+    //e.preventDefault();
+    
+    if(items[3].href === '/actionB'){
+    const soundsList = data[5].sort(() => Math.random() - 0.5);
+    localStorage.setItem('sound0', soundsList[0].audioSrc)
+    localStorage.setItem('sound1', soundsList[1].audioSrc)
+    localStorage.setItem('sound2', soundsList[2].audioSrc)
+    localStorage.setItem('sound3', soundsList[3].audioSrc)
+    localStorage.setItem('sound4', soundsList[4].audioSrc)
+    localStorage.setItem('sound5', soundsList[5].audioSrc)
+    localStorage.setItem('sound6', soundsList[6].audioSrc)
+    localStorage.setItem('sound7', soundsList[7].audioSrc)
+    } 
+    const soundsList = data[0].sort(() => Math.random() - 0.5); 
+    localStorage.setItem('sound0', soundsList[0].audioSrc)
+    localStorage.setItem('sound1', soundsList[1].audioSrc)
+    localStorage.setItem('sound2', soundsList[2].audioSrc)
+    localStorage.setItem('sound3', soundsList[3].audioSrc)
+    localStorage.setItem('sound4', soundsList[4].audioSrc)
+    localStorage.setItem('sound5', soundsList[5].audioSrc)
+    localStorage.setItem('sound6', soundsList[6].audioSrc)
+    localStorage.setItem('sound7', soundsList[7].audioSrc)
 }
 
     return( 
