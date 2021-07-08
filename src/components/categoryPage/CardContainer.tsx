@@ -107,10 +107,15 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
         isPlay
         setVisibleBlock((visible) => !visible);
       }
+     /*  if(!count) {
+        addSmile(smile.imageSuccess)
+      }
+      if(count) {
+        addSmile(smile.imageFail)
+      } */
     }, [randomSoundIndex]); 
 
-      const checkSound = (src: string, id: number) => {
-        
+      const checkSound = (src: string, id: number) => {       
           if(!props.isChecked) return        
           if(props.isChecked && isPlay && src === audioSrc){
           const audio = new Audio(); 
@@ -149,8 +154,8 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     setStar(prev => [newStar, ...stars])
   }
 
-  const smile = [{image: './images/success.png'},
-  {image: './images/fail.png'}];
+  const smile = {imageSuccess: 'smile__success',
+  imageFail: 'smile__fail'};
 
   const [smiles, setSmiles] = useState<smiles[]>([])
 
@@ -180,12 +185,8 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
    
    </div>}
    {!visibleBlock && <div className="smile-container">
-    <div className="rating">{count}</div>
-        {smiles.map((smile, index) => {
-          return (
-            <div key={index} style={{backgroundImage: `url('${smile.image}')`}}></div>
-          )
-        })}
+    <div className="smile-count">{count} errors</div>
+            <div className={classNames(count ? "smile__fail" : "smile__success"/* `${smile.imageFail}` */)}></div>
         </div>}
    </Fragment>
   );

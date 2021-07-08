@@ -22,7 +22,8 @@ import Header from "../header";
 const Emotions: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isChange, setIsChange] = useState(false);
-  const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'}
+  const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'};
+  const image = {imageSuccess: '.'}
 
  const [randomSoundIndex, setRandomSoundIndex] = useState(0);
  const [isPlay, setIsPlay] = useState(false);
@@ -96,6 +97,7 @@ const local = () => {
     audioRef.current.pause();
     isPlay
     setVisibleBlock((visible) => !visible);
+    //addSmile();
   }
  }, [randomSoundIndex]); 
 

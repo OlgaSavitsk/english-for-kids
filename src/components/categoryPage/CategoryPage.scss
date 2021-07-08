@@ -194,3 +194,33 @@
     max-width: 1440px;
     margin: auto;
   }
+
+  .smile-count {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 1350px;
+      margin: 0 auto;
+      height: 40px;
+      overflow-x: hidden;
+      line-height: 36px;
+      font-size: 36px;
+      color: black;
+  }
+
+  .smile__success,
+  .smile__fail  {
+    width: 500px;
+    height: 500px;
+    flex-shrink: 0;
+    background-size: 500px 500px;
+    background-repeat: no-repeat;
+  }
+
+  .smile__success {
+    background-image: url("./icons/success.svg");
+  }
+
+  .smile__fail {
+    background-image: url("./icons/fail.svg");
+  }
