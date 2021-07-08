@@ -35,6 +35,7 @@ const ActionB: React.FC = () => {
  const [isClick, setIsClick] = useState(0); 
  const [visibleBlock, setVisibleBlock] = useState(true);
  const [count, setCount] = useState(0);
+ const [audioArr, setAudioArr] = useState<Array<string>>([])
 
   React.useEffect(() => {
    const state = localStorage.getItem('state');
@@ -49,8 +50,6 @@ const ActionB: React.FC = () => {
  }, [isChecked]);
 
  const unSort = () => {
-  // e.preventDefault();
-   //local()
    data[1].sort(() => Math.random() - 0.5).reverse;
 }
 
@@ -73,9 +72,6 @@ const local = () => {
    } else {
      setRandomSoundIndex(0);
    }
-   if(randomSoundIndex === 7) {
-     setVisibleBlock((visible) => !visible);
-   }
    console.log(randomSoundIndex)
  };
 
@@ -95,6 +91,11 @@ const local = () => {
    } else {
      isReady.current = true;
    }
+   if(audioArr.length === 8) {
+    audioRef.current.pause();
+    isPlay
+    setVisibleBlock((visible) => !visible);
+  }
  }, [randomSoundIndex]); 
 
    const checkSound = (src: string, id: number) => {
@@ -105,6 +106,7 @@ const local = () => {
        audio.play();
        setIsActive(true);
        setIsClick(id)
+       audioArr.push(src)
       const className = star.starSucces;
       addStar(className)
        setTimeout(() => {

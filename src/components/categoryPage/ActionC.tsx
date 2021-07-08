@@ -35,6 +35,7 @@ const ActionC: React.FC = () => {
  const [isClick, setIsClick] = useState(0); 
  const [visibleBlock, setVisibleBlock] = useState(true);
  const [count, setCount] = useState(0);
+ const [audioArr, setAudioArr] = useState<Array<string>>([])
 
   React.useEffect(() => {
    const state = localStorage.getItem('state');
@@ -73,10 +74,6 @@ const ActionC: React.FC = () => {
    } else {
      setRandomSoundIndex(0);
    }
-   if(randomSoundIndex === 7) {
-     setVisibleBlock((visible) => !visible);
-   }
-   console.log(randomSoundIndex)
  };
 
  const toRepeat = () => {
@@ -95,6 +92,11 @@ const ActionC: React.FC = () => {
    } else {
      isReady.current = true;
    }
+   if(audioArr.length === 8) {
+    audioRef.current.pause();
+    isPlay
+    setVisibleBlock((visible) => !visible);
+  }
  }, [randomSoundIndex]); 
 
    const checkSound = (src: string, id: number) => {
@@ -105,6 +107,7 @@ const ActionC: React.FC = () => {
        audio.play();
        setIsActive(true);
        setIsClick(id)
+       audioArr.push(src)
       const className = star.starSucces;
       addStar(className)
        setTimeout(() => {

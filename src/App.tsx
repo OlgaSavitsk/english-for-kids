@@ -14,9 +14,7 @@ import Emotions from './components/categoryPage/Emotion';
 
 const App = (): JSX.Element => {
  /*  const [isChecked, setIsChecked] = useState(false); */
-  window.onload = () => {
-   localStorage.clear()
- } 
+ 
 
   return (
   <BrowserRouter>

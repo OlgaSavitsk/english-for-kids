@@ -138,14 +138,6 @@ header {
     }
   } 
 
-  /* .switch-inner:after {
-    content: "TRAIN";
-    right: 15px;
-    color: #fff;
-    text-shadow: 0 1px hsl(0deg 0% 100% / 50%);
-    opacity: 1;
-  }  */
-
   input:checked ~ .switch-inner:before {
     opacity: 1;
   }

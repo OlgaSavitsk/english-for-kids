@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import './header.scss'
 import classNames from 'classnames';
 import data from './categoryPage/cards.json';
+import MainPage from './Main-page/Main-page';
 
 interface HeaderProps{
     isChecked: boolean;
@@ -16,13 +17,15 @@ const Header: React.FC<HeaderProps> = props =>{
     {value: "Action (set C)", href: '/actionC', id: 4}, {value: "Adjective", href: '/adjective', id: 5}, {value: "Animal (set A)", href: '/animalA', id: 6}, {value: "Animal (set B)", href: '/animalB', id: 7}, 
     {value: "Clothes", href: '/clothes', id: 8}, {value: "Emotion", href: '/emotion', id: 9}]
 
-const checkedGame = (e: { preventDefault: () => void; }) => {
-   // e.preventDefault();
+const checkedGame = () => {
     props.onToggle(!props.isChecked);
     localStorage.setItem('state', `${props.isChecked}`)
-    //local(e)
-    //data[0].sort(() => Math.random() - 0.5).reverse;
 }
+
+window.onload = () => {
+    props.onToggle(!props.isChecked);
+    localStorage.clear();
+  } 
 
     return( 
         <header className="header">          
@@ -42,7 +45,7 @@ const checkedGame = (e: { preventDefault: () => void; }) => {
       </div>
             <label className="switch">
                 <input type="checkbox" className="input" checked={props.isChecked} onChange={checkedGame}/>          
-                <span className="slider" data-on="TRAIN" data-off="PLAY"></span>
+                <span className="slider"></span>
                 <span className="switch-inner"></span>               
             </label>
         </header>
