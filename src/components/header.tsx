@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import './header.scss'
 import classNames from 'classnames';
+import { useEffect } from 'react';
 
 interface HeaderProps{
     isChecked: boolean;
@@ -31,6 +32,12 @@ window.onload = () => {
     localStorage.clear();
   } 
 
+ /*  useEffect(() => {
+      if(activeLink){
+        props.onOpenClose(!props.menuActive)
+      }
+  }) */
+
     return( 
         <header className="header">          
                 <div className={props.menuActive ? "open" : "burger-button"} onClick={() => props.onOpenClose(!props.menuActive)}>
@@ -38,11 +45,11 @@ window.onload = () => {
                 <span></span>
                 <span></span>
                 </div>
-                <div className={classNames((props.menuActive ? "menu active-open" : ''), (props.menuActive ? "green" : "menu"), (props.isChecked ? "orange" : ''))} onClick={() => props.onOpenClose(true)}>
+                <div className={classNames((props.menuActive ? "menu active-open" : ''), (props.menuActive ? "green" : "menu"), (props.isChecked ? "orange" : ''))} /* onClick={() => props.onOpenClose(false)} */>
           <ul className="menu-container" onClick={() => props.onOpenClose(false)}>
-              {items.map((item: { id: number; href: string; value: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; }, index) => 
-                  <li key={index} onClick={() => {setIsClick(item.id)/* ; setActiveLink(true) */}}>
-                     <NavLink className={classNames((!props.menuActive ? "header-item" : "header-item"), (isClick === item.id && activeLink ? "decorate" : "")/* , (isClick === item.id && !props.activeLink ? "decorate" : "") */)} to={item.href} /* => localStorage.setItem('card-category', `${item.value}`)} */>{item.value}</NavLink>
+              {items.map((item: { id: number; href: string; value: string; }, index) => 
+                  <li key={index} onClick={() => {/* setIsClick(item.id) ; */ props.onOpenClose(true); setActiveLink(true)}}>
+                     <NavLink className={classNames((!props.menuActive ? "header-item" : "header-item"), (isClick === item.id ? "decorate" : ""))} to={item.href}>{item.value}</NavLink>
                   </li>
                   )}
           </ul>

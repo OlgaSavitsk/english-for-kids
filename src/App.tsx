@@ -1,3 +1,4 @@
+import './index.scss'
 import React, { Fragment, useState } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/Main-page/Main-page';
@@ -41,6 +42,12 @@ const App = (): JSX.Element => {
         <Redirect from="/clothes" to="/" />
         <Redirect from="/emotion" to="/" /> */}
       </Switch>
+    </div>
+    <div className="footer">
+      <a className="github" href="https://github.com/OlgaSavitsk">OlgaSavitsk</a>
+      <a className="school" href="https://rs.school/js/">
+        <span className="school-year">'2021</span>
+      </a>
     </div>
   </BrowserRouter>
   )
