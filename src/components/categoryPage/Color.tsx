@@ -20,7 +20,7 @@ import { useHistory } from "react-router-dom";
     image: string; 
   }
 
-const Adjective: React.FC = () => {
+const Color: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isChange, setIsChange] = useState(false);
@@ -54,12 +54,12 @@ const Adjective: React.FC = () => {
  }, [isChecked]);
 
  const unSort = () => {
-   data[4].sort(() => Math.random() - 0.5).reverse;
+   data[7].sort(() => Math.random() - 0.5).reverse;
 }
 
 const local = () => {
    //e.preventDefault();
-      const soundsList = data[4].sort(() => Math.random() - 0.5); 
+      const soundsList = data[7].sort(() => Math.random() - 0.5); 
       localStorage.setItem('sound0', soundsList[0].audioSrc)
       localStorage.setItem('sound1', soundsList[1].audioSrc)
       localStorage.setItem('sound2', soundsList[2].audioSrc)
@@ -165,7 +165,7 @@ return (
        )
      })}
      </div>
-{data[4].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
+{data[7].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
 <div className="button" onClick={() => {setIsChange(true)}}>
@@ -181,4 +181,4 @@ return (
 );
 }
 
-export default Adjective; 
+export default Color; 

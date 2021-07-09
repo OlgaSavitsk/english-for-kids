@@ -5,12 +5,14 @@ import Header from './components/header';
 import './index.scss';
 import CategoryPage from './components/categoryPage/CategoryPage';
 import ActionB from './components/categoryPage/ActionB';
-import ActionC from './components/categoryPage/ActionC';
-import Adjective from './components/categoryPage/Adjective';
+import ActionC from './components/categoryPage/Fruits';
+import Adjective from './components/categoryPage/Color';
 import AnimalA from './components/categoryPage/AnimalA';
 import AnimalB from './components/categoryPage/AnimalB'; 
 import Clothers from './components/categoryPage/Clothes';
 import Emotions from './components/categoryPage/Emotion';
+import Fruits from './components/categoryPage/Fruits';
+import Color from './components/categoryPage/Color';
 
 const App = (): JSX.Element => {
  /*  const [isChecked, setIsChecked] = useState(false); */
@@ -24,8 +26,8 @@ const App = (): JSX.Element => {
         <Route component={MainPage} path="/" exact />
         <Route component={CategoryPage} path="/cards"/>
        <Route component={ActionB} path="/actionB"/>
-        <Route component={ActionC} path="/actionC"/>
-        <Route component={Adjective} path="/adjective"/>
+        <Route component={Fruits} path="/actionC"/>
+        <Route component={Color} path="/adjective"/>
         <Route component={AnimalA} path="/animalA"/>
         <Route component={AnimalB} path="/animalB"/> 
         <Route component={Clothers} path="/clothes"/> 

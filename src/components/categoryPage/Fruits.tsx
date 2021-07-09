@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
     image: string; 
   }
 
-const ActionC: React.FC = () => {
+const Fruits: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isChange, setIsChange] = useState(false);
@@ -49,11 +49,11 @@ const ActionC: React.FC = () => {
  }, [isChecked]);
 
  const unSort = () => {
-     data[2].sort(() => Math.random() - 0.5).reverse;
+     data[6].sort(() => Math.random() - 0.5).reverse;
  }
  
  const local = () => {
-        const soundsList = data[2].sort(() => Math.random() - 0.5); 
+        const soundsList = data[6].sort(() => Math.random() - 0.5); 
         localStorage.setItem('sound0', soundsList[0].audioSrc)
         localStorage.setItem('sound1', soundsList[1].audioSrc)
         localStorage.setItem('sound2', soundsList[2].audioSrc)
@@ -159,7 +159,7 @@ return (
        )
      })}
      </div>
-{data[2].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
+{data[6].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
 <div className="button" onClick={() => {setIsChange(true)}}>
@@ -175,4 +175,4 @@ return (
 );
 }
 
-export default ActionC; 
+export default Fruits; 
