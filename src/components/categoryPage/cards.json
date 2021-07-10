@@ -456,10 +456,10 @@
         "id": 63
       },
       {
-        "word": "brown",
-        "translation": "коричневый",
+        "word": "purple",
+        "translation": "фиолетовый",
         "image": "./images/purple.svg",
-        "audioSrc": "./audio/brown.mp3",
+        "audioSrc": "./audio/purple.mp3",
         "id": 64
       }
     ]
