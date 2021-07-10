@@ -81,29 +81,42 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
           localStorage.setItem('sound6', soundsList[6].audioSrc)
           localStorage.setItem('sound7', soundsList[7].audioSrc)      
    }
+/* 
+   const togglePlayer = () => {
+     const prevValue = isPlay
+setIsPlay(!prevValue)
+if(prevValue){
+  audioRef.current.play()
+}
+   } */
 
     const toNextTrack = () => {
       if (randomSoundIndex < data[0].length - 1) {
         setRandomSoundIndex(randomSoundIndex + 1);
       } else {
         setRandomSoundIndex(0);
-      } 
-      
+      }      
       console.log(randomSoundIndex)
     };
 
     const toRepeat = () => {
      // e.preventDefault();
-      audioRef.current.ended
+   // audioRef.current.pause()
       if(audioRef.current.ended) {
         audioRef.current.play();
         setRandomSoundIndex(randomSoundIndex);
     }
-    }; 
+    };
 
-      useEffect(() => {      
-     audioRef.current = new Audio(audioSrc!);
-      if (isReady.current) {
+    useEffect(() => {
+      if (isPlay) {
+        setRandomSoundIndex(1);          
+      } 
+    }, [isPlay]);
+
+      useEffect(() => {     
+    audioRef.current = new Audio(audioSrc!);
+      if (isPlay) {
         audioRef.current.play();
         setIsPlay(true);       
       } else {
@@ -182,7 +195,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
       <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
    <div className="button" onClick={() => {setIsChange(true)/* ; unSort()} */}}>
-     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack();  toRepeat()}}>Start game</div>
+     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); /* toNextTrack(); */ toRepeat()}}>Start game</div>
    </div>
    
    </div>}
