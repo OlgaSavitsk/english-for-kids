@@ -32,12 +32,6 @@ window.onload = () => {
     localStorage.clear();
   } 
 
- /*  useEffect(() => {
-      if(activeLink){
-        props.onOpenClose(!props.menuActive)
-      }
-  }) */
-
     return( 
         <header className="header">          
                 <div className={props.menuActive ? "open" : "burger-button"} onClick={() => props.onOpenClose(!props.menuActive)}>

@@ -126,6 +126,10 @@ if(prevValue){
         audioRef.current.pause();
         isPlay
         setVisibleBlock((visible) => !visible);
+       if (soundEffect.srcError) {
+         const image = smile.imageFail
+         
+       }
         setTimeout(() => {
           history.push('/')
         }, 4000)
@@ -174,6 +178,7 @@ if(prevValue){
   const smile = {imageSuccess: 'smile__success',
   imageFail: 'smile__fail'};
   const [smiles, setSmiles] = useState<smiles[]>([])
+
   const addSmile = (image: string) => {
     const newSmile: smiles = {
       image: image,
@@ -201,7 +206,7 @@ if(prevValue){
    </div>}
    {!visibleBlock && <div className="smile-container">
     <div className="smile-count">{count} errors</div>
-            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>         
+            <div className={classNames(count ? "smile__fail" : "", !count ? "smile__success" : "")}></div>         
         </div>}
    </Fragment>
   );

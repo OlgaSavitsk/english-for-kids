@@ -87,6 +87,12 @@ const local = () => {
  }
  }; 
 
+ useEffect(() => {
+  if (isPlay) {
+    setRandomSoundIndex(1);          
+  } 
+}, [isPlay]);
+
    useEffect(() => {      
   audioRef.current = new Audio(audioSrc!);
    if (isReady.current) {
@@ -171,7 +177,7 @@ return (
    <CardCategory key={item.id} item={item} isChecked={isChecked} onToggle={setIsChecked} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
 )}
 <div className="button" onClick={() => {setIsChange(true)}}>
-  <div className={classNames(isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toNextTrack(); toRepeat()}}>Start game</div>
+  <div className={classNames(isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); toRepeat()}}>Start game</div>
 </div>
 
 </div>}
