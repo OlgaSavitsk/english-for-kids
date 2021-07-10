@@ -105,6 +105,14 @@ const local = () => {
     audioRef.current.pause();
     isPlay
     setVisibleBlock((visible) => !visible);
+    if (count) {
+      const audio = new Audio('./audio/failure.mp3')
+      audio.play()
+    }
+    if (!count) {
+     const audio = new Audio('./audio/success.mp3')
+     audio.play()
+   }
     setTimeout(() => {
       history.push('/')
     }, 4000)
@@ -183,7 +191,7 @@ return (
 </div>}
 {!visibleBlock && <div className="smile-container">
     <div className="smile-count">{count} errors</div>
-            <div className={classNames(count ? "smile__fail" : "smile__success")}></div>
+            <div className={classNames(count ? "smile__fail" : "", !count ? "smile__success" : "")}></div>
         </div>}
 </Fragment>
 );
