@@ -126,10 +126,14 @@ if(prevValue){
         audioRef.current.pause();
         isPlay
         setVisibleBlock((visible) => !visible);
-       if (soundEffect.srcError) {
-         const image = smile.imageFail
-         
+       if (count) {
+         const audio = new Audio('./audio/failure.mp3')
+         audio.play()
        }
+       if (!count) {
+        const audio = new Audio('./audio/success.mp3')
+        audio.play()
+      }
         setTimeout(() => {
           history.push('/')
         }, 4000)
