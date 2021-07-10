@@ -3,7 +3,6 @@ import './CategoryPage.scss'
 import CardContainer from './CardContainer';
 import Header from '../header';
 import data from './cards.json';
-import { useEffect } from 'react';
 
 const CategoryPage: React.FC = () => {
     const [isChecked, setIsChecked] = useState(false);

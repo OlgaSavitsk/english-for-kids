@@ -26,21 +26,13 @@ const App = (): JSX.Element => {
       <Switch>
         <Route component={MainPage} path="/" exact />
         <Route component={CategoryPage} path="/cards"/>
-       <Route component={ActionB} path="/actionB"/>
+        <Route component={ActionB} path="/actionB"/>
         <Route component={Fruits} path="/actionC"/>
         <Route component={Color} path="/adjective"/>
         <Route component={AnimalA} path="/animalA"/>
         <Route component={AnimalB} path="/animalB"/> 
         <Route component={Clothers} path="/clothes"/> 
         <Route component={Emotions} path='/emotion'/> 
-        {/* <Redirect from="/cards" to="/" />
-        <Redirect from="/actionB" to="/" />
-        <Redirect from="/actionC" to="/" />
-        <Redirect from="/adjective" to="/" />
-        <Redirect from="/animalA" to="/" />
-        <Redirect from="/animalB" to="/" />
-        <Redirect from="/clothes" to="/" />
-        <Redirect from="/emotion" to="/" /> */}
       </Switch>
     </div>
     <div className="footer">

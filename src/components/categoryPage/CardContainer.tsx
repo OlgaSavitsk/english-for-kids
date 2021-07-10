@@ -23,7 +23,12 @@ interface smiles {
 
 export const CardContainer: React.FC<CardContainerProps> = props => {
   /* const sounds = ['./audio/cry.mp3', "./audio/dance.mp3", "./audio/dive.mp3", "./audio/draw.mp3", "./audio/fish.mp3",  "./audio/hug.mp3", "./audio/jump.mp3",  "./audio/fly.mp3"] */
-   
+  const cards = [{value: "Action (set A)", href: './cards', image: 'dance.jpg', category: data[0], id: 1}, {value: "Action (set B)", href: './actionB', image: 'swim.jpg', category: data[1], id: 2},
+  {value: "Fruits", href: './actionC', image: 'apple.svg', category: data[6], id: 3}, {value: "Color", href: './adjective', image: 'yellow.svg', category: data[7], id: 4}, 
+  {value: "Animal (set A)", href: './animalA', image: 'cat.jpg', category: data[2], id: 5}, 
+  {value: "Animal (set B)", href: './animalB', image: 'bird.jpg', category: data[3], id: 6}, 
+  {value: "Clothes", href: './clothes', image: 'shirt.jpg', category: data[4], id: 7}, {value: "Emotion", href: './emotion', image: 'smile.jpg', category: data[5], id: 8}]
+   const [cardIndex, setCardIndex] = useState(0)
    
      const [isChange, setIsChange] = useState(false);
      const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'}
@@ -42,6 +47,11 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     const [count, setCount] = useState(0);
     const [audioArr, setAudioArr] = useState<Array<string>>([]);
     let history = useHistory();
+
+    useEffect(() => {
+      setIsClick(isClick)
+      isClick === cardIndex
+    })
 
      React.useEffect(() => {
       const state = localStorage.getItem('state');
@@ -168,7 +178,7 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
           )
         })}
         </div>
-   {data[0].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
+   {cards[cardIndex].category.map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
       <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
    )}
    <div className="button" onClick={() => {setIsChange(true)/* ; unSort()} */}}>
