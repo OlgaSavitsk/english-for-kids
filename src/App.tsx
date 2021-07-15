@@ -1,38 +1,18 @@
 import './index.scss'
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import MainPage from './components/Main-page/Main-page';
-import Header from './components/header';
 import './index.scss';
-import CategoryPage from './components/categoryPage/CategoryPage';
-import ActionB from './components/categoryPage/ActionB';
-import ActionC from './components/categoryPage/Fruits';
-import Adjective from './components/categoryPage/Color';
-import AnimalA from './components/categoryPage/AnimalA';
-import AnimalB from './components/categoryPage/AnimalB'; 
-import Clothers from './components/categoryPage/Clothes';
-import Emotions from './components/categoryPage/Emotion';
-import Fruits from './components/categoryPage/Fruits';
-import Color from './components/categoryPage/Color';
+import CategoryPage from './components/CategoryPage/CategoryPage';
 
 const App = (): JSX.Element => {
- /*  const [isChecked, setIsChecked] = useState(false); */
- 
 
   return (
   <BrowserRouter>
-  {/*  <Header isChecked={isChecked} onToggle={setIsChecked}/>  */}
     <div className="container">
       <Switch>
-        <Route component={MainPage} path="/" exact />
+         <Route component={MainPage} path="/" exact /> 
         <Route component={CategoryPage} path="/cards"/>
-        <Route component={ActionB} path="/actionB"/>
-        <Route component={Fruits} path="/actionC"/>
-        <Route component={Color} path="/adjective"/>
-        <Route component={AnimalA} path="/animalA"/>
-        <Route component={AnimalB} path="/animalB"/> 
-        <Route component={Clothers} path="/clothes"/> 
-        <Route component={Emotions} path='/emotion'/> 
       </Switch>
     </div>
     <div className="footer">

@@ -1,7 +1,3 @@
-.app-container {
-  min-height: 100vh;
-  }
-
 header {
     width: 100%;
     max-width: 1440px;
@@ -65,7 +61,7 @@ header {
 .switch {
     position: relative;
     display: inline-block;
-    width: 120px;
+    width: 100px;
     height: 34px;
   }
   
@@ -102,12 +98,11 @@ header {
   }
   
   input:focus + .slider {
-  //  box-shadow: 0 0 0 4px rgba(21, 156, 228, 0.7);
     outline: none;
   }
   
   input:checked + .slider:before {
-    transform: translateX(85px);
+    transform: translateX(65px);
   }
 
   .switch-inner {
@@ -118,7 +113,6 @@ header {
     font-size: 18px;
     line-height: 40px;
     text-transform: uppercase;
-    //background: linear-gradient(40deg,#00bf82,#0099ae);
     border-radius: inherit;
     transition: .15s ease-out;
 
@@ -131,7 +125,8 @@ header {
     } 
     &:after {
       content: "TRAIN";
-      right: 15px;
+      position: absolute;
+      right: 7px;
       color: #fff;
       text-shadow: 0 1px hsl(0deg 0% 100% / 50%);
       opacity: 1;

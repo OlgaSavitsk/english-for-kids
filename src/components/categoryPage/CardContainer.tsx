@@ -1,43 +1,38 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, Props, useRef, useState } from "react";
 import data from './cards.json';
 import CardCategory from "./CardCategory";
 import './CategoryPage.scss';
 import classNames from "classnames";
 import { useEffect } from "react";
-import { BrowserRouter, Switch, Route, NavLink, Redirect, useHistory } from 'react-router-dom';
-import MainPage from "../Main-page/Main-page";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
 interface CardContainerProps {
   isChecked: boolean;
   onToggle: React.Dispatch<React.SetStateAction<boolean>>;
   onOpenClose: React.Dispatch<React.SetStateAction<boolean>>;
+  menuActive: boolean;
 }
 
 interface stars {
   className: string; 
 }
 
-interface smiles {
-  image: string; 
+interface cards {
+  word: string,
+  translation: string,
+  image: string,
+  audioSrc: string,
+  id: number 
 }
 
 export const CardContainer: React.FC<CardContainerProps> = props => {
-  /* const sounds = ['./audio/cry.mp3', "./audio/dance.mp3", "./audio/dive.mp3", "./audio/draw.mp3", "./audio/fish.mp3",  "./audio/hug.mp3", "./audio/jump.mp3",  "./audio/fly.mp3"] */
-  const cards = [{value: "Action (set A)", href: './cards', image: 'dance.jpg', category: data[0], id: 1}, {value: "Action (set B)", href: './actionB', image: 'swim.jpg', category: data[1], id: 2},
-  {value: "Fruits", href: './actionC', image: 'apple.svg', category: data[6], id: 3}, {value: "Color", href: './adjective', image: 'yellow.svg', category: data[7], id: 4}, 
-  {value: "Animal (set A)", href: './animalA', image: 'cat.jpg', category: data[2], id: 5}, 
-  {value: "Animal (set B)", href: './animalB', image: 'bird.jpg', category: data[3], id: 6}, 
-  {value: "Clothes", href: './clothes', image: 'shirt.jpg', category: data[4], id: 7}, {value: "Emotion", href: './emotion', image: 'smile.jpg', category: data[5], id: 8}]
-   const [cardIndex, setCardIndex] = useState(0)
    
      const [isChange, setIsChange] = useState(false);
      const soundEffect = {srcError: './audio/error.mp3', srcCorrect: './audio/correct.mp3'}
   
     const [randomSoundIndex, setRandomSoundIndex] = useState(0);
     const [isPlay, setIsPlay] = useState(false);
-
-    const audioSrc = localStorage.getItem(`sound${randomSoundIndex}`);
-    
+    const audioSrc = localStorage.getItem(`sound${randomSoundIndex}`); 
     const isReady = useRef(false);
     const audioRef = useRef(new Audio(audioSrc!));
 
@@ -45,63 +40,67 @@ export const CardContainer: React.FC<CardContainerProps> = props => {
     const [isClick, setIsClick] = useState(0); 
     const [visibleBlock, setVisibleBlock] = useState(true);
     const [count, setCount] = useState(0);
-    const [audioArr, setAudioArr] = useState<Array<string>>([]);
+    const [audioArr, setAudioArr] = useState<Array<string>>([]);   
     let history = useHistory();
+    const [cardIndex, setCardIndex] = useState<number>(Number(localStorage.getItem('category')));
 
     useEffect(() => {
-      setIsClick(isClick)
-      isClick === cardIndex
-    })
+     setCardIndex(cardIndex) 
+      addCardIndex()
+      if(props.menuActive) {
+        setCardIndex(cardIndex) 
+      }
+    }) 
+
+    const addCardIndex = () => {  
+      const category = Number(localStorage.getItem('category')) 
+      const newIndex = category
+      setCardIndex(prev => newIndex)
+    }
 
      React.useEffect(() => {
       const state = localStorage.getItem('state');
       if(state === 'false') {
         props.onToggle(true);
-        local()
-        unSort()
+       
+        saveSounds()
+        unSort()  
+        setCardIndex(cardIndex)    
+        //addCardIndex() 
       } else {
         props.onToggle(false);
+       
         localStorage.clear()
+        setCardIndex(cardIndex) 
+        //addCardIndex()
       }
-      console.log('режим игры')
     }, [props.isChecked]);
 
     const unSort = () => {
-       data[0].sort(() => Math.random() - 0.5).reverse;
+       data[cardIndex].sort(() => Math.random() - 0.5).reverse;
    }
    
-   const local =() => {
-          const soundsList = data[0].sort(() => Math.random() - 0.5); 
-          localStorage.setItem('sound0', soundsList[0].audioSrc)
-          localStorage.setItem('sound1', soundsList[1].audioSrc)
-          localStorage.setItem('sound2', soundsList[2].audioSrc)
-          localStorage.setItem('sound3', soundsList[3].audioSrc)
-          localStorage.setItem('sound4', soundsList[4].audioSrc)
-          localStorage.setItem('sound5', soundsList[5].audioSrc)
-          localStorage.setItem('sound6', soundsList[6].audioSrc)
-          localStorage.setItem('sound7', soundsList[7].audioSrc)      
+   const saveSounds =() => {
+        const soundsList = data[cardIndex].sort(() => Math.random() - 0.5);
+          localStorage.setItem('sound0', soundsList[0].audioSrc);
+          localStorage.setItem('sound1', soundsList[1].audioSrc);
+          localStorage.setItem('sound2', soundsList[2].audioSrc);
+          localStorage.setItem('sound3', soundsList[3].audioSrc);
+          localStorage.setItem('sound4', soundsList[4].audioSrc);
+          localStorage.setItem('sound5', soundsList[5].audioSrc);
+          localStorage.setItem('sound6', soundsList[6].audioSrc);
+          localStorage.setItem('sound7', soundsList[7].audioSrc);    
    }
-/* 
-   const togglePlayer = () => {
-     const prevValue = isPlay
-setIsPlay(!prevValue)
-if(prevValue){
-  audioRef.current.play()
-}
-   } */
 
-    const toNextTrack = () => {
-      if (randomSoundIndex < data[0].length - 1) {
+    const toNextSound = () => {
+       if (randomSoundIndex < data[0].length - 1) {
         setRandomSoundIndex(randomSoundIndex + 1);
       } else {
         setRandomSoundIndex(0);
       }      
-      console.log(randomSoundIndex)
     };
 
-    const toRepeat = () => {
-     // e.preventDefault();
-   // audioRef.current.pause()
+    const toRepeatSound = () => {
       if(audioRef.current.ended) {
         audioRef.current.play();
         setRandomSoundIndex(randomSoundIndex);
@@ -129,8 +128,7 @@ if(prevValue){
        if (count) {
          const audio = new Audio('./audio/failure.mp3')
          audio.play()
-       }
-       if (!count) {
+       } else {
         const audio = new Audio('./audio/success.mp3')
         audio.play()
       }
@@ -153,7 +151,7 @@ if(prevValue){
          const className = star.starSucces;
          addStar(className)
           setTimeout(() => {
-           toNextTrack()
+           toNextSound()
           }, 1500)         
         }
         if(props.isChecked && isPlay && src !== audioSrc) {
@@ -178,18 +176,7 @@ if(prevValue){
     }
     setStar(prev => [newStar, ...stars])
   }
-
-  const smile = {imageSuccess: 'smile__success',
-  imageFail: 'smile__fail'};
-  const [smiles, setSmiles] = useState<smiles[]>([])
-
-  const addSmile = (image: string) => {
-    const newSmile: smiles = {
-      image: image,
-    }
-    setSmiles(prev => [newSmile, ...smiles])
-  }
-
+  
   return (
     <Fragment>
        {visibleBlock && <div className="card-field" onClick={() => {props.onOpenClose(false) }}>
@@ -200,11 +187,11 @@ if(prevValue){
           )
         })}
         </div>
-   {cards[cardIndex].category.map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
-      <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar}/>
-   )}
-   <div className="button" onClick={() => {setIsChange(true)/* ; unSort()} */}}>
-     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); /* toNextTrack(); */ toRepeat()}}>Start game</div>
+   {data[cardIndex].map((item: {word: string; translation: string; image: string; audioSrc: string; id: number;}) => 
+      <CardCategory key={item.id} item={item} isChecked={props.isChecked} onToggle={props.onToggle} onClick={checkSound} soundEffect={soundEffect} isActive={isActive} onActive={setIsActive} onSetClick={setIsClick} isClick={isClick} onAdd={addStar} /* cardIndex={props.cardIndex} onChengeCards={props.onChengeCards} *//>
+   )}    
+   <div className="button" onClick={() => {setIsChange(true)}}>
+     <div className={classNames(props.isChecked ? "button-text" : "hidden", [!isChange ? "button-text" : "button-repeat"])} onClick={() => {setIsPlay(true); /* toNextTrack(); */ toRepeatSound()}}>Start game</div>
    </div>
    
    </div>}

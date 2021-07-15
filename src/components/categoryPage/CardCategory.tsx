@@ -10,11 +10,9 @@ interface CardCategoryProps {
         translation: string;
         image: string;
         audioSrc: string;
-} 
-  /* onFlip(id: number): void; */
+}
   isChecked: boolean;
   onToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  //isPlay: boolean;
   onClick: (src: string, id: number) => void;
  isActive: boolean;
  onActive: React.Dispatch<React.SetStateAction<boolean>>; 
@@ -25,13 +23,11 @@ interface CardCategoryProps {
 isClick: number;
 onSetClick: React.Dispatch<React.SetStateAction<number>>;
 onAdd: (className: string) => void;
-
 }
 
 export const CardCategory: React.FC <CardCategoryProps> = props => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isUnActive, setIsUnActive] = useState(false); 
- //const [isClick, setIsClick] = useState(false); 
+  const [isUnActive, setIsUnActive] = useState(false);  
   
   function playAudio(src: string) {
     if(!props.isChecked){
@@ -56,7 +52,7 @@ if(props.isClick === props.item.id && props.isActive) {
    <div className="card-container" onMouseLeave={() => setIsFlipped(false)}>
     <div className={classNames(isFlipped ? "flipped" : "card")}>
          <div className={classNames(props.isChecked ? "card__front cover" : "card__front", (props.isClick === props.item.id && props.isActive) ? "inactive" : '', isUnActive ? "inactive" : '')} style={{backgroundImage: `url('${props.item.image}')`}}
-          onClick={() =>{playAudio(props.item.audioSrc);  props.onSetClick(props.item.id);  /* props.onClick(props.item.audioSrc); */  unActive()}}>
+          onClick={() =>{playAudio(props.item.audioSrc);  props.onSetClick(props.item.id); unActive()}}>
             <div className={classNames(props.isChecked ? "card-title hidden" : "card-title")}>{props.item.word}</div>
           </div>
           <div className="card__back" style={{backgroundImage: `url('${props.item.image}')`}}>
@@ -70,7 +66,3 @@ if(props.isClick === props.item.id && props.isActive) {
 }
 
 export default CardCategory;
-
-function play(audioSrc: string): void {
-  throw new Error("Function not implemented.");
-}

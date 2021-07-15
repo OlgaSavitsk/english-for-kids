@@ -22,11 +22,7 @@
 
 .card-container {
   perspective: 500px;
-  cursor: pointer;
-
-/*  &:hover > .card {
-    transform: rotateY(180deg);
-  } */ 
+  cursor: pointer; 
 }
 
 .flipped {
